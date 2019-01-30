@@ -11,10 +11,10 @@ add_subdirectory(src_test)
 install(PROGRAMS src/ip_filter src_test/test_ip_filter DESTINATION bin)
 install(CODE "
   if (NOT EXISTS \"lib/libgtest_main.so\")
-        file(INSTALL ./googletest-release-1.8.0/googlemock/gtest/libgtest_main.so DESTINATION \"lib\")
+        file(INSTALL ${CMAKE_CURRENT_SOURCE_DIR}/googletest-release-1.8.0/googlemock/gtest/libgtest_main.so DESTINATION \"lib\")
   endif()
   if (NOT EXISTS \"lib/libgtest.so\")
-        file(INSTALL ./googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION \"lib\")
+        file(INSTALL ${CMAKE_CURRENT_SOURCE_DIR}/googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION \"lib\")
   endif()
  ")
 
