@@ -9,7 +9,16 @@ add_subdirectory(src)
 add_subdirectory(src_test)   
 
 install(PROGRAMS src/ip_filter src_test/test_ip_filter DESTINATION bin)
-install(FILES googletest-release-1.8.0/googlemock/gtest/libgtest_main.so googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION lib)
+install(CODE "
+  if (NOT EXISTS \"lib/libgtest_main.so\")
+        file(INSTALL \"googletest-release-1.8.0/googlemock/gtest/libgtest_main.so\" DESTINATION \"lib\")
+  endif()
+  if (NOT EXISTS \"lib/libgtest.so\")
+        file(INSTALL \"googletest-release-1.8.0/googlemock/gtest/libgtest.so\" DESTINATION \"lib\")
+  endif()
+ ")
+
+#install(FILES googletest-release-1.8.0/googlemock/gtest/libgtest_main.so googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION lib)
 install(FILES data_test/ip_filter.tsv DESTINATION var)
 
 set(CPACK_GENERATOR DEB)
