@@ -58,9 +58,9 @@ void print_ip_pool(const ip_pool_type& ip_pool)
 {
       for (const auto& ip_addr : ip_pool)
       {
-            std::cout << ip_addr[0] << ":"
-                      << ip_addr[1] << ":"
-                      << ip_addr[2] << ":"
+            std::cout << ip_addr[0] << "."
+                      << ip_addr[1] << "."
+                      << ip_addr[2] << "."
                       << ip_addr[3] << "\n";
       }
 }
