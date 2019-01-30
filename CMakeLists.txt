@@ -8,8 +8,9 @@ add_subdirectory(src_lib)
 add_subdirectory(src)   
 add_subdirectory(src_test)   
 
-install(PROGRAMS src/tie_tulp_cli src_test/test_tie_tulp DESTINATION bin)
-install(PROGRAMS googletest-release-1.8.0/googlemock/gtest/libgtest_main.so googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION lib)
+install(PROGRAMS src/ip_filter src_test/test_ip_filter DESTINATION bin)
+install(FILES googletest-release-1.8.0/googlemock/gtest/libgtest_main.so googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION lib)
+install(FILES data_test/ip_filter.tsv DESTINATION var)
 
 set(CPACK_GENERATOR DEB)
 
