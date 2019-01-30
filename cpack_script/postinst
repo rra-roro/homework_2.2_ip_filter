@@ -1,4 +1,6 @@
 #!/bin/sh
 
-mv -f /tmp/ip_filter/libgtest_main.so  /usr/lib/libgtest_main.so  
-mv -f /tmp/ip_filter/libgtest.so  /usr/lib/libgtest_main.so  
+mv -f /tmp/ip_filter/libgtest_main.so  /usr/lib/
+mv -f /tmp/ip_filter/libgtest.so  /usr/lib/
+
+exit 0
