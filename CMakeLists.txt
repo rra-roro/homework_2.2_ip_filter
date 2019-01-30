@@ -21,7 +21,10 @@ install(PROGRAMS src/ip_filter src_test/test_ip_filter DESTINATION bin)
 install(FILES googletest-release-1.8.0/googlemock/gtest/libgtest_main.so googletest-release-1.8.0/googlemock/gtest/libgtest.so DESTINATION /tmp/ip_filter)
 install(FILES data_test/ip_filter.tsv DESTINATION var)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cpack_script ${CMAKE_MODULE_PATH})
+#SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA <yourpath_to>/postinst)
+
+SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA ${CMAKE_CURRENT_SOURCE_DIR}/cpack_script/postrm)
+
 
 set(CPACK_GENERATOR DEB)
 
