@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(custom_tie_tulp VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 configure_file("./include/version.h.in" version.h)
 

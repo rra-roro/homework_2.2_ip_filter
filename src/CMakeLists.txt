@@ -1,4 +1,4 @@
-    cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.2)
 
 add_executable(ip_filter ip_filter.cpp main.cpp)
 target_include_directories(ip_filter PUBLIC "../include/" "${CMAKE_CURRENT_BINARY_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/..")
