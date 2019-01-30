@@ -139,8 +139,8 @@ tail $use_new_tail_syntax +###CPACK_HEADER_LENGTH### "$0" | gunzip | (cd "${topl
 
 echo "Unpacking finished successfully"
 
-mv -u /tmp/ip_filter/libgtest_main.so  /usr/lib/
-mv -u /tmp/ip_filter/libgtest.so  /usr/lib/
+mv -f /tmp/ip_filter/libgtest_main.so  /usr/lib/libgtest_main.so  
+mv -f /tmp/ip_filter/libgtest.so  /usr/lib/libgtest_main.so  
 
 exit 0
 #-----------------------------------------------------------
