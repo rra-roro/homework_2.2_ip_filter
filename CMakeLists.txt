@@ -23,4 +23,4 @@ set(CPACK_PACKAGE_CONTACT rra.roro@gmail.com)
 include(CPack)
 
 enable_testing()
-add_test(test_tie_tulp src_test/test_tie_tulp)
+add_test(test_ip_filter src_test/test_ip_filter)
