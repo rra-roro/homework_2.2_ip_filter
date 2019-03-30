@@ -12,7 +12,7 @@ if (MSVC)
 
         set(TARGT_NAME ip_filter)
         file(GLOB_RECURSE ALL_SOURCE "*.cpp" "*.h" "*.c" "*.hpp")
-        file(GLOB_RECURSE ONLY_SOURCE_FILES "*.cpp" "*.h" "*.c" "*.hpp")
+        file(GLOB_RECURSE ONLY_SOURCE_FILES "*.cpp" "*.c")
         set(HEADER_DIR "./include/" "${CMAKE_CURRENT_BINARY_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/..")
 
         add_library(${TARGT_NAME}.analyze OBJECT ${ONLY_SOURCE_FILES})
