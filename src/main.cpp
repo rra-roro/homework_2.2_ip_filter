@@ -18,7 +18,7 @@ void help()
        -?          -about program (this info)
 
  Example to use (Linux):
-    ip_filter.tsv | ip_filter
+    cat /usr/var/ip_filter.tsv | ip_filter
 
  Example to use (Windows):
     ip_filter < ip_filter.tsv)"
