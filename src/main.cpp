@@ -4,6 +4,7 @@
 #include "ip_filter.h"
 
 using namespace std;
+using namespace roro_lib;
 
 void help()
 {
@@ -32,19 +33,19 @@ void version_ip_filter()
 // clang-format off
 static inline auto pred_octet1_eq_1 = [](const ip_address_type& ip_addr)
                                       {
-                                            return ip_addr[0] == "1";
+                                            return ip_addr[0] == 1;
                                       };
 
 static inline auto pred_octet1_eq_46_and_octet2_eq_70 = [](const ip_address_type& ip_addr)
                                                         {
-                                                              return ip_addr[0] == "46" &&
-                                                                     ip_addr[1] == "70";
+                                                              return ip_addr[0] == 46 &&
+                                                                     ip_addr[1] == 70;
                                                         };
 
 static inline auto pred_any_octet_eq_46 = [](const ip_address_type& ip_addr)
                                           {
-                                                return ip_addr[0] == "46" || ip_addr[1] == "46" ||
-                                                       ip_addr[2] == "46" || ip_addr[3] == "46";
+                                                return ip_addr[0] == 46 || ip_addr[1] == 46 ||
+                                                       ip_addr[2] == 46 || ip_addr[3] == 46;
                                           };
 // clang-format on
 
@@ -52,36 +53,49 @@ static inline auto pred_any_octet_eq_46 = [](const ip_address_type& ip_addr)
 
 int main(int argc, char* argv[])
 {
-      ParserCommandLine PCL;
-      PCL.AddFormatOfArg("?", no_argument, '?');
-      PCL.AddFormatOfArg("help", no_argument, '?');
-      PCL.AddFormatOfArg("version", no_argument, 'v');
-
-      PCL.SetShowError(false);
-      PCL.Parser(argc, argv);
-
-      if (PCL.Option['?'])
+      try
       {
-            help();
+            ParserCommandLine PCL;
+            PCL.AddFormatOfArg("?", no_argument, '?');
+            PCL.AddFormatOfArg("help", no_argument, '?');
+            PCL.AddFormatOfArg("version", no_argument, 'v');
+
+            PCL.SetShowError(false);
+            PCL.Parser(argc, argv);
+
+            if (PCL.Option['?'])
+            {
+                  help();
+                  return 0;
+            }
+            if (PCL.Option['v'])
+            {
+                  version_ip_filter();
+                  return 0;
+            }
+
+            auto ip_pool = get_ip_pool_from_stdin();
+
+            sort_ip_pool_inverse_lex(ip_pool);
+
+            print_ip_pool(ip_pool);
+
+            print_ip_pool(filter(ip_pool, pred_octet1_eq_1));
+            print_ip_pool(filter(ip_pool, pred_octet1_eq_46_and_octet2_eq_70));
+            print_ip_pool(filter(ip_pool, pred_any_octet_eq_46));
+
             return 0;
       }
-      if (PCL.Option['v'])
+      catch (const std::exception& ex)
       {
-            version_ip_filter();
-            return 0;
+            cerr << "Error: " << ex.what() << endl;
+            return EXIT_FAILURE;
       }
-
-      auto ip_pool = get_ip_pool_from_stdin();
-
-      sort_ip_pool_inverse_lex(ip_pool);
-
-      print_ip_pool(ip_pool);
-
-      print_ip_pool(filter(ip_pool, pred_octet1_eq_1));
-      print_ip_pool(filter(ip_pool, pred_octet1_eq_46_and_octet2_eq_70));
-      print_ip_pool(filter(ip_pool, pred_any_octet_eq_46));
-
-      return 0;
+      catch (...)
+      {
+            cerr << "Error: unknown exception" << endl;
+            return EXIT_FAILURE;
+      }
 }
 
 #endif
