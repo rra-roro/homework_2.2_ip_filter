@@ -19,4 +19,4 @@ namespace roro_lib
       void print_ip_pool(const ip_pool_type& ip_pool);
 
       ip_pool_type filter(const ip_pool_type& ip_pool, pred_type pred);
-};
+}

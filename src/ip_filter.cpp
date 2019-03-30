@@ -54,7 +54,7 @@ namespace roro_lib
                                     };
             const auto sort_pred = [&](const auto& ip_addr1, const auto& ip_addr2)
                                     {
-                                          return lexicographical_compare(ip_addr1.cbegin(), ip_addr1.cend(),
+                                          return std::lexicographical_compare(ip_addr1.cbegin(), ip_addr1.cend(),
                                                                         ip_addr2.cbegin(), ip_addr2.cend(), cmp_str);
                                     };
 
